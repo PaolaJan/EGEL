@@ -1,20 +1,36 @@
-package cajero;
+package cajeroegel;
 import java.util.Scanner;
+import java.awt.Label;
+import javax.swing.*;
+import java.awt.Frame;
+
+/**
+ *
+ * @author janne
+ */
+public class CajeroEGEL {
  
-public class Cajero {
- 
-    public static void main(String[] args) {
- 
-   int saldo = 3000, retirar, deposito;
+public static void main(String[] args) {
+        int saldo = 1000, retirar, deposito;
+        int intento, pin = 123456789, veces=1;
         Scanner s = new Scanner(System.in);
-        while(true)
+        
+        do{
+        System.out.print("Ingresa la contraseña: ");
+        intento=s.nextInt();
+        
+        if(intento==pin){
+            System.out.println("¡Acceso correcto!");
+            System.out.println("¡Bienvenido!");
+            
+            while(true)
         {
-            System.out.println("BIENVENIDO AL CAJERO AUTOMATICO\n");
+            System.out.println("\nCAJERO\n");
             System.out.println("-----------------------------------");
-            System.out.println("PRESIONE 1 PARA RETIRAR SALDO");
-            System.out.println("PRESIONE 2 PARA DEPOSITAR SALDO");
-            System.out.println("PRESIONE 3 PARA VERIFICAR SU SALDO");
-            System.out.println("PRESIONE 4 PARA SALIR");
+            System.out.println("1.RETIRAR SALDO");
+            System.out.println("2.DEPOSITAR SALDO");
+            System.out.println("3.VERIFICAR SALDO");
+            System.out.println("4.SALIR");
             System.out.println("------------------------------------\n");
             System.out.print("POR FAVOR SELECCIONE LA OPERACION QUE DESEA REALIZAR:");
             int n = s.nextInt();
@@ -30,7 +46,7 @@ public class Cajero {
                 }
                 else
                 {
-                    System.out.println("\nBALANCE INSUFICIENTE");
+                    System.out.println("\nNO TIENE FONDOS SUFICIENTES");
                 }
  
                 System.out.println("");
@@ -54,5 +70,19 @@ public class Cajero {
                 System.exit(0);
             }
         }
-    }
+           
+
+        }else if (intento !=pin && veces<3){
+            System.out.println("¡Contraseña incorrecta!");
+            veces = veces+1; // incremento el numero de intentos    
+             
+        }else if  (veces==3){
+            System.out.println("¡Acceso restringido");
+            System.out.println("Cerrando el sistema");
+            
+            System.exit(0);
+        }   
+        }while(intento!=pin);
+    }    
 }
+ 
